@@ -1,0 +1,33 @@
+{
+  "name": "userman-cs-server",
+  "version": "2.0.0",
+  "description": "Usermanager master example using ApiDoc",
+  "main": "src/server.ts",
+  "author": "Institut für Informationswissenschaften",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@git.thm.de:webP-wbs/userman.git"
+  },
+  "dependencies": {
+    "@types/crypto-js": "^3.1.43",
+    "@types/express-session": "^1.15.15",
+    "@types/mysql": "^2.15.8",
+    "apidoc": "^0.17.7",
+    "crypto-js": "^3.1.9-1",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "mysql": "^2.17.1",
+    "socket.io": "^1.7.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.1",
+    "@types/node": "^12.11.1",
+    "@types/socket.io": "^1.4.42",
+    "@types/socket.io-client": "^1.4.34"
+  },
+  "scripts": {
+    "apidoc": "apidoc -i src/ -o apidoc/",
+    "run": "node src/server.js"
+  }
+}

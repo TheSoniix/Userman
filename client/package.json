@@ -1,0 +1,25 @@
+{
+  "name": "userman-cs-client",
+  "version": "2.0.0",
+  "description": "Usermanager master example using AJAX, Bootstrap, Font-Awesome and JQuery",
+  "main": "",
+  "author": "Institut für Informationswissenschaften",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@git.thm.de:webP-wbs/userman.git"
+  },
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.16.0",
+    "socket.io": "^1.7.3"
+  },
+  "devDependencies": {
+    "@types/socket.io-client": "^1.4.34",
+    "@types/socket.io": "^1.4.42",
+    "@types/bootstrap": "^4.3.1",
+    "@types/jquery": "^3.3.31"
+  }
+}

@@ -1,0 +1,49 @@
+### Check login state
+GET http://localhost:8080/login HTTP/1.1
+
+### Login
+POST http://localhost:8080/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin"
+}
+
+### Logout
+GET http://localhost:8080/logout HTTP/1.1
+Cookie:
+
+### Create a new user
+POST http://localhost:8080/user HTTP/1.1
+Content-Type: application/json
+Cookie:
+
+{
+  "username": "Batman",
+  "password": "I'm batman",
+  "firstName": "Bruce",
+  "lastName": "Wayne"
+}
+
+### Get all users
+GET http://localhost:8080/users HTTP/1.1
+Cookie:
+
+### Get specific user
+GET http://localhost:8080/user/2 HTTP/1.1
+Cookie:
+
+### Update specific user
+PUT http://localhost:8080/user/2 HTTP/1.1
+Content-Type: application/json
+Cookie:
+
+{
+  "firstName": "Gotham",
+  "lastName": "City"
+}
+
+### Delete specific user
+DELETE  http://localhost:8080/user/2 HTTP/1.1
+Cookie:

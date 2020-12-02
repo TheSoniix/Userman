@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Userman CS</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Link stylesheets -->
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+
+    <!-- Link own stylesheets -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Import javascript libraries -->
+    <script type="text/javascript" src="/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/popperjs/umd/popper.min.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+
+    <!-- Import own script (the compiled javascript) -->
+    <script type="text/javascript" src="/src/client.js"></script>
+</head>
+<body>
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Usermanager</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-supported-content"
+                aria-controls="navbar-supported-content" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar-supported-content">
+            <form class="form-inline my-2 my-lg-0" id="login-form">
+                <div class="input-group">
+                    <input type="text" placeholder="Username" class="form-control" id="login-username">
+                    <input type="password" placeholder="Password" class="form-control" id="login-password">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-info" type="submit">Login</button>
+                    </div>
+                </div>
+            </form>
+            <div id="logout-form">
+                <span class="navbar-text pr-3" id="navbar-username"></span>
+                <button class="btn btn-outline-info" type="button" id="logout-button">Logout</button>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main role="main">
+
+    <!-- Messages window -->
+    <div class="container">
+        <div class="row pt-3">
+            <div class="col" id="messages">
+                <!-- Messages from the script will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Content area -->
+    <div class="container" id="content">
+        <div class="row">
+            <div class="col">
+                <form id="add-user-form">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="add-user-first-name">First name</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="First name" aria-label="First name"
+                               aria-describedby="add-user-first-name" id="add-first-name-input">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="add-user-last-name">Last name</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Last name" aria-label="Last name"
+                               aria-describedby="add-user-last-name" id="add-last-name-input">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="add-username">Username</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+                               aria-describedby="add-user-name" id="add-username-input">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="add-password">Password</span>
+                        </div>
+                        <input type="password" class="form-control" placeholder="Password" aria-label="Password"
+                               aria-describedby="add-password" id="add-password-input">
+                    </div>
+                    <div class="input-group mb-3">
+                        <button type="submit" class="btn btn-info">Add user</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Userlist -->
+        <div class="row">
+            <div class="col">
+                <table class="table table-striped">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First name</th>
+                        <th scope="col">Last name</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody id="user-table-body">
+                    <!-- The user list will be generated and inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Edit user modal window -->
+        <div class="modal fade" id="edit-user-modal" tabindex="-1" role="dialog" aria-labelledby="edit-user-modal"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <form class="modal-content" id="edit-user-form">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="edit-user-modal-title">Edit user: </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">First and last name</span>
+                            </div>
+                            <input type="hidden" aria-hidden="true" id="edit-id-input">
+                            <input type="text" aria-label="First name" placeholder="First name" class="form-control"
+                                   id="edit-first-name-input">
+                            <input type="text" aria-label="Last name" placeholder="Last name" class="form-control"
+                                   id="edit-last-name-input">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="closeBtn" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-info">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</main>
+</body>
+</html>
